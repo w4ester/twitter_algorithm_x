@@ -1,5 +1,6 @@
 package com.twitter.search.earlybird.common.userupdates;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -223,7 +224,7 @@ public class UserTableBuilderFromSnapshot {
     BufferedReader buffer = new BufferedReader(new InputStreamReader(
         HdfsUtils.getInputStreamSupplier(timestampFile).openStream()));
 
-    long timestampMillis = Long.parseLong(buffer.readLine());
+    long timestampMillis = Long.parseLong(BoundedLineReader.readLine(buffer, 5_000_000));
     LOG.info("read timestamp {} from HDFS:{}", timestampMillis, timestampFile);
 
     Time time = Time.fromMilliseconds(timestampMillis)
