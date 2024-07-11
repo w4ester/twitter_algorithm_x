@@ -1,5 +1,6 @@
 package com.twitter.search.earlybird_root;
 
+import java.security.SecureRandom;
 import java.util.Map;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class EarlybirdServicePartitionLoggingSupport
   private static final long LATENCY_LOG_PARTITIONS_THRESHOLD_MS = 500;
   private static final double FRACTION_OF_REQUESTS_TO_LOG = 1.0 / 500.0;
 
-  private final Random random = new Random();
+  private final Random random = new SecureRandom();
 
   @Override
   public void logPartitionLatencies(EarlybirdRequestContext requestContext,

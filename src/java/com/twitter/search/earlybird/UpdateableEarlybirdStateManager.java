@@ -2,6 +2,7 @@ package com.twitter.search.earlybird;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -415,7 +416,7 @@ public class UpdateableEarlybirdStateManager extends OneTaskScheduledExecutorMan
     scoringModelsManager.reload();
     tensorflowModelsManager.run();
 
-    Random random = new Random();
+    Random random = new SecureRandom();
 
     try {
       // We had an issue where HDFS operations were blocking, so reloading these models
