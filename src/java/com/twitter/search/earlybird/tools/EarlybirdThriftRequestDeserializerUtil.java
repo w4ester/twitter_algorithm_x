@@ -1,5 +1,6 @@
 package com.twitter.search.earlybird.tools;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -53,7 +54,7 @@ public final class EarlybirdThriftRequestDeserializerUtil {
     BufferedReader reader = Files.newBufferedReader(logFile, Charset.defaultCharset());
     try {
       String line;
-      while ((line = reader.readLine()) != null) {
+      while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
         EarlybirdRequest ebRequest = deserializeEBRequest(line);
         if (ebRequest != null) {
           System.out.println(ebRequest);
