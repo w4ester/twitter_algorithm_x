@@ -1,6 +1,7 @@
 package com.twitter.search.earlybird.archive.segmentbuilder;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -95,7 +96,7 @@ public class SegmentBuilder {
   private final EarlybirdSegmentFactory segmentFactory;
   private final SegmentBuilderCoordinator segmentBuilderCoordinator;
   private final SegmentSyncConfig segmentSyncConfig;
-  private final Random random = new Random();
+  private final Random random = new SecureRandom();
 
   private static final double SLEEP_RANDOMIZATION_RATIO = .2;
 

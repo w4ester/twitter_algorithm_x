@@ -1,6 +1,7 @@
 package com.twitter.search.core.earlybird.index.inverted;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -128,7 +129,7 @@ public class SkipListContainer<K> implements Flushable {
   private final SkipListComparator<K> defaultComparator;
 
   /** Random generator used to decide if to grow tower by one level or not. */
-  private final Random random = new Random();
+  private final Random random = new SecureRandom();
 
   /**
    * Used by writer thread to record last pointers at each level. Notice it is ok to have it as an
